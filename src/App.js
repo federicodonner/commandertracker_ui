@@ -89,7 +89,7 @@ export default function App() {
         {loader && <Loader>Cargando tus mazos</Loader>}
         {!loader && decks && (
           <div className="flexContainer vertical">
-            {latestDate && (
+            {latestDate !== 0 && (
               <div className="lastPlayed centered">
                 La última vez que jugaste fue el {convertDate(latestDate)[0]}
               </div>
