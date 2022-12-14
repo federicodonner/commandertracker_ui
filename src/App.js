@@ -8,6 +8,7 @@ export default function App() {
   const [loader, setLoader] = useState(true);
   const [decks, setDecks] = useState([]);
   const [latestDate, setLatestDate] = useState(null);
+  const [currentSort, setCurrentSort] = useState("nombre");
 
   // Loads the decks when the page loads
   useEffect(() => {
@@ -17,7 +18,7 @@ export default function App() {
       `decks/${user}`,
       null,
       (response) => {
-        setDecks(response.decks);
+        setDecks(response.decks.sort(decksSortByName));
         setLatestDate(response.latestDate);
       },
       (response) => {
@@ -33,6 +34,41 @@ export default function App() {
     }
   }, [decks, latestDate]);
 
+  function toggleSort() {
+    switch (currentSort) {
+      case "nombre":
+        setDecks(decks.sort(decksSortByDate));
+        setCurrentSort("fecha");
+        break;
+      case "fecha":
+        setDecks(decks.sort(decksSortByName));
+        setCurrentSort("nombre");
+        break;
+      default:
+        setCurrentSort("nombre");
+    }
+  }
+
+  function decksSortByDate(a, b) {
+    if (a.lastPlayed < b.lastPlayed) {
+      return 1;
+    }
+    if (a.lastPlayed > b.lastPlayed) {
+      return -1;
+    }
+    return 0;
+  }
+
+  function decksSortByName(a, b) {
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+    return 0;
+  }
+
   return (
     <div className="App">
       <header>Logo</header>
@@ -40,7 +76,13 @@ export default function App() {
         {loader && <Loader>Cargando tus mazos</Loader>}
         {!loader && decks && (
           <>
-            <div className="lastPlayed">{latestDate}</div>
+            <div className="lastPlayed">
+              La última vez que jugaste fue el {latestDate}
+            </div>
+            <div className="sortOptions">
+              Mazos ordenados por:
+              <button onClick={toggleSort}>{currentSort}</button>
+            </div>
             <div className="decksContainer">
               {decks.map((deck) => {
                 return (

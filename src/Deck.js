@@ -65,30 +65,27 @@ export default function Deck(props) {
       )}
       {query && (
         <div className="deckQuery">
-          <div
-            className="button"
+          <button
             onClick={() => {
               updateCount(1);
             }}
           >
             (+)
-          </div>
-          <div
-            className="button"
+          </button>
+          <button
             onClick={() => {
               updateCount(-1);
             }}
           >
             (-)
-          </div>
-          <div
-            className="button"
+          </button>
+          <button
             onClick={() => {
               setQuery(false);
             }}
           >
             (X)
-          </div>
+          </button>
         </div>
       )}
     </div>
