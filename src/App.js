@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import { logo } from "./images/logo.png";
+import logo from "./images/logo.png";
 import Loader from "./Loader";
 import Deck from "./Deck";
 import { accessAPI, convertDate } from "./utils/fetchFunctions";
@@ -51,12 +51,22 @@ export default function App() {
   }
 
   function decksSortByDate(a, b) {
+    if (a.played > 0 && b.played === 0) {
+      return -1;
+    }
+
+    if (a.played === 0 && b.played > 0) {
+      return 1;
+    }
+
     if (a.lastPlayed < b.lastPlayed) {
       return 1;
     }
+
     if (a.lastPlayed > b.lastPlayed) {
       return -1;
     }
+
     return 0;
   }
 
@@ -72,19 +82,21 @@ export default function App() {
 
   return (
     <div className="App">
-      <header>Logo</header>
+      <header>
+        <img className="logo" src={logo} alt="logo" />
+      </header>
       <main>
         {loader && <Loader>Cargando tus mazos</Loader>}
         {!loader && decks && (
-          <>
-            <div className="lastPlayed">
+          <div className="flexContainer vertical">
+            <div className="lastPlayed centered">
               La última vez que jugaste fue el {convertDate(latestDate)[0]}
             </div>
-            <div className="sortOptions">
+            <div className="sortOptions centered">
               Mazos ordenados por:
               <button onClick={toggleSort}>{currentSort}</button>
             </div>
-            <div className="decksContainer">
+            <div className="decksContainer centered flexContainer vertical">
               {decks.map((deck) => {
                 return (
                   <Deck
@@ -95,7 +107,7 @@ export default function App() {
                 );
               })}
             </div>
-          </>
+          </div>
         )}
       </main>
     </div>
