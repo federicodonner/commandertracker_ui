@@ -30,10 +30,10 @@ export default function App() {
 
   // When the decks are loaded, turn off the loader
   useEffect(() => {
-    if (decks && latestDate) {
+    if (decks) {
       setLoader(false);
     }
-  }, [decks, latestDate]);
+  }, [decks]);
 
   function toggleSort() {
     switch (currentSort) {
@@ -89,9 +89,11 @@ export default function App() {
         {loader && <Loader>Cargando tus mazos</Loader>}
         {!loader && decks && (
           <div className="flexContainer vertical">
-            <div className="lastPlayed centered">
-              La última vez que jugaste fue el {convertDate(latestDate)[0]}
-            </div>
+            {latestDate && (
+              <div className="lastPlayed centered">
+                La última vez que jugaste fue el {convertDate(latestDate)[0]}
+              </div>
+            )}
             <div className="sortOptions centered">
               Mazos ordenados por:
               <button onClick={toggleSort}>{currentSort}</button>
