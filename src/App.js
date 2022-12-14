@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import { logo } from "./images/logo.png";
 import Loader from "./Loader";
 import Deck from "./Deck";
-import { accessAPI } from "./utils/fetchFunctions";
+import { accessAPI, convertDate } from "./utils/fetchFunctions";
 
 export default function App() {
   const [loader, setLoader] = useState(true);
@@ -77,7 +78,7 @@ export default function App() {
         {!loader && decks && (
           <>
             <div className="lastPlayed">
-              La última vez que jugaste fue el {latestDate}
+              La última vez que jugaste fue el {convertDate(latestDate)[0]}
             </div>
             <div className="sortOptions">
               Mazos ordenados por:

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { accessAPI } from "./utils/fetchFunctions";
+import { accessAPI, convertDate } from "./utils/fetchFunctions";
 import Loader from "./Loader";
 
 export default function Deck(props) {
@@ -58,7 +58,9 @@ export default function Deck(props) {
           <div className="detailsContainer">
             <span className="detail">Veces jugado: {deck.played}</span>
             {deck.played !== 0 && (
-              <span className="detail">Última partida: {deck.lastPlayed}</span>
+              <span className="detail">
+                Última partida: {convertDate(deck.lastPlayed)[1]}
+              </span>
             )}
           </div>
         </div>

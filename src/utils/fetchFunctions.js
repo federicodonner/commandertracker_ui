@@ -44,3 +44,13 @@ export function accessAPI(verb, endpoint, data, callbackSuccess, callbackFail) {
       callbackFail(response);
     });
 }
+
+// Receives a timestamp and returns an array with
+// DD/MM and DD/MM/YYYY
+export function convertDate(timestamp) {
+  const date = new Date(timestamp);
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  return [`${day}/${month}`, `${day}/${month}/${year}`];
+}
