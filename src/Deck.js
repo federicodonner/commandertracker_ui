@@ -72,13 +72,15 @@ export default function Deck(props) {
           >
             (+)
           </button>
-          <button
-            onClick={() => {
-              updateCount(-1);
-            }}
-          >
-            (-)
-          </button>
+          {deck.played > 0 && (
+            <button
+              onClick={() => {
+                updateCount(-1);
+              }}
+            >
+              (-)
+            </button>
+          )}
           <button
             onClick={() => {
               setQuery(false);
