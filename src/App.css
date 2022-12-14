@@ -1,11 +1,112 @@
+body {
+  background-color: #222222;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+  height: 60px;
+  text-align: center;
+  border-bottom: 1px solid white;
+  margin-bottom: 20px;
+}
+
+header .logo {
+  height: 40px;
+  margin-top: 10px;
+}
+
 .deckContainer {
-  height: 25vw;
+  height: 28vw;
   width: 80vw;
   overflow: hidden;
+  margin-top: 10px;
+  max-height: 115px;
+  max-width: 340px;
 }
 
 .deck {
   background-size: cover;
   height: 100%;
   width: 100%;
+}
+
+.deck .dataContainer {
+  height: 85%;
+  position: relative;
+  top: 10px;
+  left: 15px;
+}
+
+.deck .dataContainer .name {
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.deck .dataContainer .detailsContainer {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: fit-content;
+  padding: 3px 10px;
+  font-size: 0.8em;
+}
+
+.deckContainer .loaderContainer .loader img {
+  height: 28vw;
+  max-height: 115px;
+}
+
+.deckContainer .deckQuery {
+  height: 100%;
+}
+
+.roundButton {
+  font-size: 4em;
+}
+
+/* Flex layout */
+
+.flexContainer {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+}
+
+.spaceBetween {
+  justify-content: space-between;
+}
+
+.vertical {
+  flex-direction: column;
+}
+
+.centered {
+  align-self: center;
+}
+
+/* Elementos */
+
+button {
+  padding: 6px 30px;
+  border-radius: 10px;
+  font-size: 1em;
+  margin: 10px 5px;
+  background-color: rgba(0, 0, 0, 0);
+  width: fit-content;
+  color: white;
+  border: 1px solid white;
+}
+
+button.confirm {
+  border: 1px solid #86c38c;
+  color: #86c38c;
+}
+
+button.blue {
+  border: 1px solid #88bcec;
+  color: #88bcec;
+}
+
+button.disabled {
+  border: 1px solid #cccccc;
+  color: #cccccc;
 }

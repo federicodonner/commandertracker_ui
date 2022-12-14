@@ -5,10 +5,10 @@ export default function Loader(props) {
     <div className="loaderContainer flexContainer vertical">
       <div className="loader centered">
         <img src={loaderImage} alt="loader" />
-        {props.children && (
-          <div className="loaderText centered">{props.children}</div>
-        )}
       </div>
+      {props.children && (
+        <div className="loaderText centered">{props.children}</div>
+      )}
     </div>
   );
 }

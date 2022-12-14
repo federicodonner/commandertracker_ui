@@ -45,51 +45,56 @@ export default function Deck(props) {
 
   return (
     <div className="deckContainer">
-      {loader && <Loader>Actualizando datos</Loader>}
-      {!loader && deck && !query && (
+      {loader && <Loader />}
+      {!loader && deck && (
         <div
           className="deck"
-          style={{ backgroundImage: `url(${deck.mainCardImage})` }}
-          onClick={() => {
-            setQuery(true);
+          style={{
+            backgroundImage: `radial-gradient(transparent, rgb(0, 0, 0)), url(${deck.mainCardImage})`,
           }}
         >
-          <div className="name"> {deck.name}</div>
-          <div className="detailsContainer">
-            <span className="detail">Veces jugado: {deck.played}</span>
-            {deck.played !== 0 && (
-              <span className="detail">
-                Última partida: {convertDate(deck.lastPlayed)[1]}
-              </span>
-            )}
-          </div>
-        </div>
-      )}
-      {query && (
-        <div className="deckQuery">
-          <button
-            onClick={() => {
-              updateCount(1);
-            }}
-          >
-            (+)
-          </button>
-          {deck.played > 0 && (
-            <button
+          {!query && (
+            <div
+              className="dataContainer flexContainer vertical spaceBetween"
               onClick={() => {
-                updateCount(-1);
+                setQuery(true);
               }}
             >
-              (-)
-            </button>
+              <div className="name"> {deck.name}</div>
+              <div className="detailsContainer">
+                <div className="detail">Veces jugado: {deck.played}</div>
+                {deck.played !== 0 && (
+                  <div className="detail">
+                    Última partida: {convertDate(deck.lastPlayed)[1]}
+                  </div>
+                )}
+              </div>
+            </div>
           )}
-          <button
-            onClick={() => {
-              setQuery(false);
-            }}
-          >
-            (X)
-          </button>
+          {query && (
+            <div className="deckQuery flexContainer">
+              <i
+                className="lni lni-circle-plus roundButton centered"
+                onClick={() => {
+                  updateCount(1);
+                }}
+              ></i>
+              {deck.played > 0 && (
+                <i
+                  className="lni lni-circle-minus roundButton centered"
+                  onClick={() => {
+                    updateCount(-1);
+                  }}
+                ></i>
+              )}
+              <i
+                className="lni lni-cross-circle roundButton centered"
+                onClick={() => {
+                  setQuery(false);
+                }}
+              ></i>
+            </div>
+          )}
         </div>
       )}
     </div>
