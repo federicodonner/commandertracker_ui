@@ -1,6 +1,9 @@
 import loaderImage from "./images/loader.svg";
 
 export default function Loader(props) {
+  var img = new Image();
+  img.src = loaderImage;
+
   return (
     <div className="loaderContainer flexContainer vertical">
       <div className="loader centered">

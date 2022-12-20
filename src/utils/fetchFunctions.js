@@ -54,3 +54,18 @@ export function convertDate(timestamp) {
   const year = date.getFullYear();
   return [`${day}/${month}`, `${day}/${month}/${year}`];
 }
+
+// Store data un LS
+export function storeInLS(key, data) {
+  localStorage.setItem(key, data);
+}
+
+// Read from LS
+export function readFromLS(key) {
+  return localStorage.getItem(key);
+}
+
+// Delete from LS
+export function deleteFromLS(key) {
+  return localStorage.removeItem(key);
+}
