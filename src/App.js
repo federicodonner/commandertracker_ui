@@ -52,11 +52,11 @@ export default function App() {
 
   function decksSortByDate(a, b) {
     if (a.played > 0 && b.played === 0) {
-      return -1;
+      return 1;
     }
 
     if (a.played === 0 && b.played > 0) {
-      return 1;
+      return -1;
     }
 
     if (a.lastPlayed < b.lastPlayed) {
