@@ -114,6 +114,14 @@ export default function App() {
     window.location.href = "/" + userName.current.value;
   }
 
+  // Triggered by a deck when there is new data to load
+  function updateDecksList(newDeckInfo, index) {
+    let decksList = decks;
+    decksList[index] = newDeckInfo;
+    setDecks(decksList);
+    setLatestDate(newDeckInfo.lastPlayed);
+  }
+
   return (
     <div className="App">
       <header>
@@ -133,11 +141,13 @@ export default function App() {
               <button onClick={toggleSort}>{currentSort}</button>
             </div>
             <div className="decksContainer centered flexContainer vertical">
-              {decks.map((deck) => {
+              {decks.map((deck, index) => {
                 return (
                   <Deck
                     key={deck.id}
                     deck={deck}
+                    updateDecksList={updateDecksList}
+                    index={index}
                     user={window.location.pathname.substring(1)}
                   />
                 );

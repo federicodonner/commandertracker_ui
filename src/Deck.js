@@ -34,7 +34,7 @@ export default function Deck(props) {
       url,
       null,
       (response) => {
-        setDeck(response);
+        props.updateDecksList(response, props.index);
       },
       (response) => {
         setLoader(false);
