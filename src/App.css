@@ -16,6 +16,10 @@ header .logo {
   margin-top: 10px;
 }
 
+.decksContainer {
+  margin-bottom: 40px;
+}
+
 .deckContainer {
   height: 28vw;
   width: 80vw;
